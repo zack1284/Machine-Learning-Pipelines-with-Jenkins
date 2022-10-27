@@ -1,22 +1,10 @@
-FROM jupyter/scipy-notebook
+FROM condaforge/miniforge3
 
-RUN pip install joblib
-
-
-USER root
-RUN apt-get update && apt-get install -y jq
-
-RUN mkdir model raw_data processed_data results
-
-
-ENV RAW_DATA_DIR=/home/jovyan/raw_data
-ENV PROCESSED_DATA_DIR=/home/jovyan/processed_data
-ENV MODEL_DIR=/home/jovyan/model
-ENV RESULTS_DIR=/home/jovyan/results
-ENV RAW_DATA_FILE=adult.csv
-
-
-COPY adult.csv ./raw_data/adult.csv
-COPY preprocessing.py ./preprocessing.py
-COPY train.py ./train.py
+RUN pip install mlflow boto3 pymysql \
+    && pip install numpy>=1.21.2 \
+    && pip install pandas>=1.3.3 \
+    && pip install scikit-learn>=0.24.2 \
+    && conda install -c conda-forge xgboost \
+    && conda install -c conda-forge imbalanced-learn
 COPY test.py ./test.py
+COPY creditcard.csv ./
