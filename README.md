@@ -8,3 +8,5 @@
 `sudo -S docker container exec model python3 train.py`
 
 `sudo -S docker container exec model python3 test.py`
+
+test
