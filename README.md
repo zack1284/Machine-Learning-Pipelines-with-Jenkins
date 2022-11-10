@@ -9,4 +9,4 @@
 
 `sudo -S docker container exec model python3 test.py`
 
-test
+`docker run -p 8080:8080 -p 50000:50000 -d -v jenkins_home:/var/jenkins_home jenkins/jenkins:latest`
