@@ -12,7 +12,7 @@ data = pd.read_csv(filepath1)
 
 
 # Use IP of your remote machine here
-server_ip = "172.23.144.1"
+server_ip = "172.30.192.1"
 
 # set up minio credentials and connection
 os.environ['AWS_ACCESS_KEY_ID'] = 'admin'
