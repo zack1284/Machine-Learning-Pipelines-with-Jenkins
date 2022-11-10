@@ -38,7 +38,7 @@ X_under, y_under = undersample.fit_resample(X_train, y_train)
 
 import mlflow.pyfunc
 
-model_name = "testmodel"
+model_name = "logistic"
 model_version = 1
 
 model = mlflow.pyfunc.load_model(
