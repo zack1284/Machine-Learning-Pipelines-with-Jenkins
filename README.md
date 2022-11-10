@@ -24,3 +24,31 @@ In Jenkins's pipeline configuration, we use scripts to build our pipelines. We n
 `sudo -S docker container exec model python3 test.py`
 
 `docker run -p 8080:8080 -p 50000:50000 -d -v jenkins_home:/var/jenkins_home jenkins/jenkins:latest`
+
+`pipeline {
+ 
+ agent any
+     
+    stages {
+        stage('Getting Project from Git') {
+            steps {
+                echo 'Project is downloading...'
+                git branch:'main', url:'https://github.com/zack1284/Machine-Learning-Pipelines-with-Jenkins.git'
+  
+                 }
+             }
+          stage('Building docker container') {
+            steps {
+                  sh 'docker build -t card-model .'
+                  sh 'docker run -it -d --name model card-model'
+               }
+           }
+        stage('Test stage') {
+              steps {
+                    sh 'docker container exec model python3 test.py'
+                    sh 'docker rm -f model'
+                  }
+               }
+    }
+}
+`
